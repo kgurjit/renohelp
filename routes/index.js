@@ -6,12 +6,17 @@ router.get('/', function(req, res, next) {
   res.render('home');
 });
 
-router.get('/kitchen', function(req, res, next){
-	res.render('category', {name: 'Kitchen'});
+router.get('/category/:catgName', function(req, res, next){
+	//TODO: Populate data from database
+	var data = {};
+	data.name = req.params.catgName;
+	data.contractors = [];
+	data.videos = [];
+	res.render('category', {'data': data});
 });
 
-router.get('/bathroom', function(req, res, next){
-	res.render('category', {name: 'Bathroom'});
+router.get('/contractors', function(req, res, next){
+	res.render('contractors', {name: 'Contractors'});
 });
 
 module.exports = router;
