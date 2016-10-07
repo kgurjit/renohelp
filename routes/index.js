@@ -19,4 +19,12 @@ router.get('/contractors', function(req, res, next){
 	res.render('contractors', {name: 'Contractors'});
 });
 
+router.get('/designers', function(req, res, next){
+	res.render('designers', {name: 'Designers'});
+});
+
+router.get('/videos', function(req, res, next){
+	res.render('videos', {name: 'Videos'});
+});
+
 module.exports = router;
