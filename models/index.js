@@ -70,6 +70,7 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 db.diyvideo.belongsTo(db.category);
+db.item.belongsTo(db.store);
 
 // var Listing = require('./listing');
 // var Category = require('./category');

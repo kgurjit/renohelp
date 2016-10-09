@@ -5,100 +5,14 @@ var Designer = require('../../models')["designer"];
 var Category = require('../../models')["category"];
 var User = require('../../models')["user"];
 var DIYVideo = require('../../models')["diyvideo"];
+var Item = require('../../models')["item"];
+var Store = require('../../models')["store"];
 
 var geocoder = require('geocoder');
 
 
-var ad = {
-  getById: function(id, callback) {
-    Contractor.findOne({
-      where: {
-        id: id
-      },
-      include: [User, Category]
-    }).then(function(Contractor) {
-      callback(Contractor);
-    });
-  },
-
-  // getContractorsForUser: function(userId, callback, error) {
-  //   Contractor.findAll({
-  //     where: {
-  //       userId: {$eq: userId}
-  //     }
-  //   }).then(function(Contractors){
-  //     if(!Contractors || Contractors.length === 0) {
-  //       Contractors = [];
-  //     }
-  //     callback(Contractors);
-  //   }).catch(function(){
-  //     error();
-  //   })
-  // },
-
-  // deleteContractor: function(ContractorId, callback, error){
-  //   Contractor.destroy({where: {id: {$eq: ContractorId}}}).then(function(){
-  //     callback();
-  //   }).catch(function(){
-  //     error();
-  //   });
-  // },
-
+var orm = {
   
-// searchByKeywordsAndLoc: function(catgId, loc, callback, error) {
-
-//         var condition = {};
-
-//         if(catgId !== '') {
-//             condition['where'] = {categoryId: catgId};
-//         }
-      
-//       if(loc && loc.trim().length === 5) {
-
-//           if(catgId == '') {
-//               condition['where'] = {zipCode: {$eq: loc}};
-//           } else    {
-//           condition.where['$and'] = {zipCode: {$eq: loc}};
-//           }
-          
-//       }    
-
-//       Contractor.findAll(condition).then(function(Contractors) {
-//       if(!Contractors || Contractors.length === 0) {
-//           Contractors = [];
-//       } 
-//       callback(Contractors);
-//       }).catch(function(){
-//       if(error) {
-//           error();
-//       }
-//       });
-//  },
-
-  getAllCategories: function(callback) {
-    Category.findAll().then(function(categories) {
-      callback(categories);
-    });
-  },
-
-  // createContractor: function(ContractorData, callback, error) {
-  //   var completeAddress = ContractorData.address + "," + ContractorData.city + "," + ContractorData.state + " " + ContractorData.zipCode;
-  //   console.log('\n\nComplete Address: ' + completeAddress);
-
-  //   geocoder.geocode(completeAddress, function(err, data) {
-  //     ContractorData["latitude"] = data.results[0].geometry.location.lat;
-  //     ContractorData["longitude"] = data.results[0].geometry.location.lng;
-  //     console.log('\n\nLat: ' + ContractorData["latitude"]);
-  //     console.log('\n\nLng: ' + ContractorData["longitude"]);
-
-  //     Contractor.create(ContractorData).then(function(createdContractor) {
-  //       callback(createdContractor.id);
-  //     }).catch(function() {
-  //       error();
-  //     });
-  //   });
-  // },
-
   createUser: function(user, callback, error) {
     User.findOne({
       where: {
@@ -122,8 +36,123 @@ var ad = {
         });
       }
     });
+  },
+
+  getAllCategories: function(callback) {
+    Category.findAll().then(function(categories) {
+      callback(categories);
+    });
+  },
+
+  getAllContractors: function(callback) {
+    Contractor.findAll().then(function(contractors) {
+      callback(contractors);
+    });
+  },
+
+  getAllDesigners: function(callback) {
+    Designer.findAll().then(function(designers) {
+      callback(designers);
+    });
+  },
+
+  getAllDIYVideos: function(callback) {
+    DIYVideo.findAll().then(function(diyvideos) {
+      callback(diyvideos);
+    });
+  },
+
+  getAllStores: function(callback) {
+    Store.findAll().then(function(stores) {
+      callback(stores);
+    });
+  },
+  
+  getContractorById: function(id, callback) {
+    Contractor.findOne({
+      where: {
+        id: id
+      }
+    }).then(function(contractor) {
+      callback(contractor);
+    });
+  },
+
+  getDesignerById: function(id, callback) {
+    Designer.findOne({
+      where: {
+        id: id
+      }
+    }).then(function(designer) {
+      callback(designer);
+    });
+  },
+
+  getDIYVideoById: function(id, callback) {
+    DIYVideo.findOne({
+      where: {
+        id: id
+      }
+    }).then(function(diyvideo) {
+      callback(diyvideo);
+    });
+  },
+
+  getDIYVideoById: function(id, callback) {
+    DIYVideo.findOne({
+      where: {
+        id: id
+      }
+    }).then(function(diyvideo) {
+      callback(diyvideo);
+    });
+  },
+
+  getDIYVideosForCategories: function(categoryId, callback, error) {
+    DIYVideo.findAll({
+      where: {
+        categoryId: {$eq: categoryId}
+      }
+    }).then(function(DIYVideos){
+      if(!DIYVideos || DIYVideos.length === 0) {
+        DIYVideos = [];
+      }
+      callback(DIYVideos);
+    }).catch(function(){
+      error();
+    })
+  },
+
+  getContractorsByZipcode: function(zipCode, callback, error) {
+    Contractor.findAll({
+      where: {
+        zipCode: zipCode
+      }
+    }).then(function(Contractors){
+      if(!Contractors || Contractors.length === 0) {
+        Contractors = [];
+      }
+      callback(Contractors);
+    }).catch(function(){
+      error();
+    })
+  },
+
+  getDIYVideosForCategories: function(categoryId, callback, error) {
+    DIYVideo.findAll({
+      where: {
+        categoryId: {$eq: categoryId}
+      }
+    }).then(function(DIYVideos){
+      if(!DIYVideos || DIYVideos.length === 0) {
+        DIYVideos = [];
+      }
+      callback(DIYVideos);
+    }).catch(function(){
+      error();
+    })
   }
+
 };
 
-
-module.exports = ad;
+module.exports = orm;
