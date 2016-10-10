@@ -8,7 +8,7 @@ module.exports = function(sequelize, DataTypes) {
     city: Sequelize.STRING,
     state: Sequelize.STRING,
     zipCode: Sequelize.STRING,
-    phoneNumber: Sequelize.INTEGER
+    phoneNumber: Sequelize.STRING
   });
 
   return Contractor;
