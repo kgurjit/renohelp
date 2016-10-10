@@ -12,7 +12,7 @@ var basename  = path.basename(module.filename); // this grabs the name of our mo
 // ===========================================================
 var env       = process.env.NODE_ENV || 'development';
 // Send the env to our config.json to determine which connection to use
-var config    = require(__dirname + '/../config/config.json')[env];
+var config    = require(__dirname + '/../app/config/config.json')[env];
 
 
 
