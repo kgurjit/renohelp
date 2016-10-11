@@ -99,7 +99,14 @@
 	<script src="/js/jquery.waypoints.min.js"></script>
 	<!-- Counters -->
 	<script src="/js/jquery.countTo.js"></script>
+
+	<script src="/js/react/react.min.js"></script>
+	<script src="/js/react/react-dom.min.js"></script>
+	<script src="/js/react/browser.min.js"></script>
 	
+	{{#if js}}
+	<script  type="text/babel" src="/js/{{js}}"></script>
+	{{/if}}
 	
 	<!-- MAIN JS -->
 	<script src="/js/main.js"></script>
