@@ -1,8 +1,32 @@
 var express = require('express');
 var router = express.Router();
+var ORM = require('../app/config/orm');
 
-router.get('/contractors', function(req, res, next) {
-  res.json([{id: 1, name: 'Singh', loc: 'Edison', costPerHour: 75},{id: 2, name: 'Kaur', loc: 'Woodbridge', costPerHour: 85},]);
+router.get('/contractorsall', function(req, res, next) {
+  ORM.getAllContractors(function(data){
+    res.json(data);
+  })
 });
+
+router.get('/designersall', function(req, res, next) {
+  ORM.getAllDesigners(function(data){
+    res.json(data);
+  })
+});
+
+router.get('/diyvideosall', function(req, res, next) {
+  ORM.getAllDIYVideos(function(data){
+    res.json(data);
+  })
+});
+
+router.get('/diyvideosbycategories', function(req, res, next) {
+  ORM.getDIYVideoById(function(data){
+    res.json(data);
+  })
+});
+
+
+
 
 module.exports = router;

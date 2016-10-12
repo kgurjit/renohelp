@@ -108,10 +108,10 @@ var orm = {
     });
   },
 
-  getDIYVideosForCategories: function(categoryId, callback, error) {
+  getDIYVideosForCategories: function(category, callback, error) {
     DIYVideo.findAll({
       where: {
-        categoryId: {$eq: categoryId}
+        category: category
       }
     }).then(function(DIYVideos){
       if(!DIYVideos || DIYVideos.length === 0) {
