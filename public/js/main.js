@@ -177,5 +177,15 @@
 		mobileMenuOutsideClick();
 	});
 
+	$(document).ready(function(){
+		$.each($("#fh5co-main-menu li"), function(idx, li){
+		     li = $(li);
+		     var cls = "fh5co-active";
+		     li.removeClass(cls);
+		     if(window.location.pathname === li.find("a").eq(0).attr("href")){
+		          li.addClass(cls);
+		     }
+		});
+	});
 
 }());
