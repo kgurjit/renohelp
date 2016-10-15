@@ -17,7 +17,7 @@ router.get('/logout', function(req, res, next) {
 });
 
 router.get('/login', function(req, res, next){
-	res.render('login');
+	res.render('login', {r: req.query.r});
 });
 
 router.get('/signup', function(req, res, next){
@@ -33,8 +33,12 @@ router.post('/signup', function(req, res, next){
 });
 
 router.post('/login', function(req, res, next){
+	var redirectTo = '/';
+	if(req.body.r === 'contractors') {
+		redirectTo = '/contractors';
+	}
 	passport.authenticate('local', {
-		successRedirect: '/',
+		successRedirect: redirectTo,
 		failureRedirect: '/login'
 	}, function(err, user, info) {
 		if (err || !user) {
@@ -52,7 +56,7 @@ router.post('/login', function(req, res, next){
 					errorMessage: err.message
 				});
 			} else {
-				return res.redirect('/');
+				return res.redirect(redirectTo);
 			}
 		});
 	})(req, res, next);

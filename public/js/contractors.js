@@ -5,7 +5,7 @@ var Contractor = React.createClass({
       return <div class='contractor'>
               <h3>{c.name}</h3> 
               {c.city}<br/>
-              <a href='/login'>Login to view address</a>
+              <a href='/login?r=contractors'>Login to view address</a>
             </div>;  
     }
     return <div class='contractor'>
