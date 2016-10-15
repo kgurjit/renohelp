@@ -61,7 +61,7 @@ router.post('/login', function(req, res, next){
 router.get('/category/:catgName', function(req, res, next){
 	//TODO: Populate data from database
 	var data = {};
-	switch (catgName){
+	switch (req.params.catgName){
 		case 'kitchen':
 			data.name = req.params.catgName;
 			data.contractors = [];
