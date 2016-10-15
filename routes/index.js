@@ -94,7 +94,19 @@ router.get('/designers', function(req, res, next){
 });
 
 router.get('/videos', function(req, res, next){
-	res.render('videos', {name: 'Videos'});
+	var videosPerCatg = {};
+	orm.getAllDIYVideos(function(videos){
+		videos.forEach(function(v){
+			console.log('HHH' + v);
+			var vidList = [];
+			if(v.category in videosPerCatg) {
+				vidList = videosPerCatg[v.category];
+			}
+			vidList.push(v);
+			videosPerCatg[v.category] = vidList;
+		});
+		res.render('videos', {name: 'Videos', videos: videosPerCatg});
+	});
 });
 
 module.exports = router;

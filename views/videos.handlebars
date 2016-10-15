@@ -1,4 +1,15 @@
 	<div class="fh5co-narrow-content animate-box fh5co-border-bottom" data-animate-effect="fadeInLeft">
 		<h2 class="fh5co-heading">{{name}}</span></h2>
-		Videos will come here..
+		{{#each videos}}
+			<div class="row">
+				<h2>{{@key}}</h2>
+				{{#each this}}
+					<div class="col-lg-6 vid">
+						<h4>{{title}}</h4>
+						<iframe width="400" height="315" src="{{url}}" frameborder="0" allowfullscreen></iframe>
+					</div>
+				{{/each}}
+			</div>
+			<hr>
+		{{/each}}
 	</div>
