@@ -3,13 +3,13 @@ var Contractor = React.createClass({
 		var c = this.props.details;
     if(!c.address) {
       return <div class='contractor'>
-              <h1>{c.name}</h1> <br/>
+              <h3>{c.name}</h3> 
               {c.city}<br/>
               <a href='/login'>Login to view address</a>
             </div>;  
     }
     return <div class='contractor'>
-              <h1>{c.name}</h1> <br/>
+              <h3>{c.name}</h3> 
               {c.address}<br/>
               {c.city}<br/>
               {c.phoneNumber}
