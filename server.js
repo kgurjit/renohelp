@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var orm = require('./app/config/orm');
+var compression = require('compression');
 
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
@@ -30,6 +31,9 @@ passport.deserializeUser(function(username, done) {
 });
 
 var app = express();
+
+// GZIP all assets
+app.use(compression());
 
 // view engine setup
 var exphbs = require('express-handlebars');
