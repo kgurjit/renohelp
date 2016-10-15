@@ -64,8 +64,14 @@
 				<ul>
 					<li class="fh5co-active"><a href="/">Home</a></li>
 					<li><a href="/contractors">Contractors</a></li>
-					<li><a href="about.html">Designers</a></li>
-					<li><a href="contact.html">Videos</a></li>
+					<li><a href="/designers">Designers</a></li>
+					<li><a href="/videos">Videos</a></li>
+					{{#if user}}
+					<li><a href="/logout">Logout</a></li>
+					{{else}}
+					<li><a href="/login">Login</a></li>
+					<li><a href="/signup">Signup</a></li>
+					{{/if}}
 				</ul>
 			</nav>
 

@@ -2,8 +2,13 @@ var express = require('express');
 var router = express.Router();
 var ORM = require('../app/config/orm');
 
-router.get('/contractorsall', function(req, res, next) {
+router.get('/contractors', function(req, res, next) {
   ORM.getAllContractors(function(data){
+    if (!req.isAuthenticated()) {
+      data = data.map(function(d){
+        return {name: d.name, city: d.city};
+      });  
+    }
     res.json(data);
   })
 });

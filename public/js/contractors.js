@@ -1,7 +1,20 @@
 var Contractor = React.createClass({
 	render: function(){
 		var c = this.props.details;
-		return <div class='contractor'><h1>{c.name}</h1> <h2>{c.address}</h2></div>;
+    if(!c.address) {
+      return <div class='contractor'>
+              <h1>{c.name}</h1> <br/>
+              {c.city}<br/>
+              <a href='/login'>Login to view address</a>
+            </div>;  
+    }
+    return <div class='contractor'>
+              <h1>{c.name}</h1> <br/>
+              {c.address}<br/>
+              {c.city}<br/>
+              {c.phoneNumber}
+            </div>;  
+		
 	}
 });
 
