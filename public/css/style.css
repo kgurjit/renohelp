@@ -1240,3 +1240,7 @@ body.offcanvas #fh5co-main, body.offcanvas .fh5co-nav-toggle {
 }
 
 /*# sourceMappingURL=style.css.map */
+
+.fh5co-heading {
+  text-transform: capitalize;
+}
