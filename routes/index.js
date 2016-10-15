@@ -1,9 +1,61 @@
 var express = require('express');
 var router = express.Router();
+var orm = require('../app/config/orm');
+var passport = require('passport');
 
-/* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('home');
+});
+
+router.get('/logout', function(req, res, next) {
+	if (!req.isAuthenticated()) {
+		res.redirect('/login'); 
+	} else {
+		req.logout();
+		res.redirect('/login'); 
+	}
+});
+
+router.get('/login', function(req, res, next){
+	res.render('login');
+});
+
+router.get('/signup', function(req, res, next){
+	res.render('signup');
+});
+
+router.post('/signup', function(req, res, next){
+	orm.createUser({username: req.body.username, password:req.body.password}, function(){
+		res.redirect('/');
+	}, function(err){
+		res.render('error');
+	});
+});
+
+router.post('/login', function(req, res, next){
+	passport.authenticate('local', {
+		successRedirect: '/',
+		failureRedirect: '/login'
+	}, function(err, user, info) {
+		if (err || !user) {
+			var message = err ? err.message : info.message;
+
+			return res.render('login', {
+				title: 'Login',
+				errorMessage: message
+			});
+		}
+		return req.logIn(user, function(err) {
+			if (err) {
+				return res.render('login', {
+					title: 'Login',
+					errorMessage: err.message
+				});
+			} else {
+				return res.redirect('/');
+			}
+		});
+	})(req, res, next);
 });
 
 router.get('/category/:catgName', function(req, res, next){

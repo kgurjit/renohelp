@@ -12,8 +12,35 @@ var geocoder = require('geocoder');
 
 
 var orm = {
+
+  login: function(username, password, done) {
+    User.findOne({
+      where: {
+        username: username
+      }
+    }).then(function(user) {
+      if (user === null) {
+        done(null, false, {
+          message: 'Invalid Username or Password'
+        });
+      } else {
+        if (!bcrypt.compareSync(password, user.password)) {
+          done(null, false, {
+            message: 'Invalid Username or Password'
+          });
+        } else {
+          done(null, user);
+        }
+      }
+    }).catch(function(e) {
+      done(null, false, {
+        message: 'Invalid Username or Password'
+      });
+    });
+  },
   
   createUser: function(user, callback, error) {
+    console.log('User info:: ' + user.username);
     User.findOne({
       where: {
         username: user.username
