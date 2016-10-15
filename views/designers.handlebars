@@ -1,0 +1,15 @@
+	<div class="fh5co-narrow-content animate-box fh5co-border-bottom" data-animate-effect="fadeInLeft">
+		<h2 class="fh5co-heading">{{name}}</span></h2>
+		<div id="designer-list"></div>	
+		
+		{{#each designers}}
+			<div class="designer">
+			<h3>{{name}}</h3>
+			<p>
+				{{address}}<br>
+				{{city}}, {{state}}, {{zipCode}}<br>
+				{{phoneNumber}}
+			</p>
+			</div>
+		{{/each}}
+	</div>

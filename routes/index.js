@@ -84,7 +84,9 @@ router.get('/contractors', function(req, res, next){
 });
 
 router.get('/designers', function(req, res, next){
-	res.render('designers', {name: 'Designers'});
+	orm.getAllDesigners(function(designers){
+		res.render('designers', {name: 'Designers', designers: designers});	
+	});
 });
 
 router.get('/videos', function(req, res, next){
